@@ -56,7 +56,7 @@
           <span class="req-input" >
             <span class="input-status" data-toggle="tooltip" data-placement="top" title="Aadhaar ID."> </span>
 
-            <input ng-model="Driver.aadhaar_ID" type="text" data-min-length="8" placeholder="Aaadhaar Id">
+            <input ng-disabled="Driver.otpgenerated" ng-model="Driver.aadhaar_ID" type="text" data-min-length="8" placeholder="Aaadhaar Id">
           </span>
         </div>
         <div ng-if="Driver.otpgenerated" class="row">
@@ -72,8 +72,8 @@
           </span>
         </div>-->
         <div class="row submit-row">
-          <button ng-click="Driver.SubmitDriver()" type="button" class="btn btn-block submit-form">Submit 
-          <span ng-if="Driver.laoding"> loading...</span> </button>
+          <button ng-disabled="Driver.loading" ng-click="Driver.SubmitDriver()" type="button" class="btn btn-block submit-form">Submit 
+          <span ng-if="Driver.loading"> loading...</span> </button>
         </div>
       </div>
       </div>

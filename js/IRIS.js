@@ -19,7 +19,7 @@ function Driver($http, $scope, $timeout){
 	
 
 	this.SubmitDriver = function(){
-		
+		this.loading = true;
 		$http({
 			url : "http://172.16.4.56/IRIS_APP/api/AddDriver.php",
 			method: "POST",
@@ -27,7 +27,7 @@ function Driver($http, $scope, $timeout){
 				aadhaar_ID : this.aadhaar_ID,
 			}
 		}).then(function(data){
-			$timeout(function(data){
+			$timeout(function(){
 				console.log(data);
 				object.loading = false;
 				object.otpgenerated = true;
