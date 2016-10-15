@@ -71,6 +71,9 @@
             <input ng-model="Driver.PhoneNumber" type="tel" placeholder="Phone Number">
           </span>
         </div>-->
+        <div class="alert alert-success">
+             <strong>Success!</strong> OTP Generated
+        </div>
         <div class="row submit-row">
           <button ng-disabled="Driver.loading" ng-click="Driver.SubmitDriver()" type="button" class="btn btn-block submit-form">Submit 
           <span ng-if="Driver.loading"> loading...</span> </button>
