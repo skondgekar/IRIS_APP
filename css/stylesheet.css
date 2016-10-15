@@ -5,13 +5,8 @@ h1{
 
 }
 
-body {
-    background-image: url("pexels-photo-185348.jpeg"); 
-}
-
-label label-default {
-float: left;
-
+html {
+  background-image: url('a.png');
 }
 .form-container div, .form-container  span{
     font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
