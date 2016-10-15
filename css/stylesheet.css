@@ -4,6 +4,15 @@ h1{
 	color:red;
 
 }
+
+body {
+    background-image: url("pexels-photo-185348.jpeg");
+}
+
+label label-default {
+float: left;
+
+}
 .form-container div, .form-container  span{
     font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
 }

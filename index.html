@@ -52,12 +52,14 @@
             <input ng-model="Driver.FullName" type="text" data-min-length="8" placeholder="Full Name">
           </span>
         </div>-->
-        <div class="row">
+        <div class="row" >
+
           <span class="req-input" >
-            <span class="input-status" data-toggle="tooltip" data-placement="top" title="Aadhaar ID."> </span>
-			
+            <span class="input-status" data-toggle="tooltip" data-placement="top" title="Aadhaar ID."></span>
             <input ng-disabled="Driver.otpgenerated" ng-model="Driver.aadhaar_ID" type="text" data-min-length="8" placeholder="Aaadhaar Id">
-            {{Driver.aadhaar_ID.length}}
+           <span class="label label-default">{{Driver.aadhaar_ID.length}}</span> 
+            
+
           </span>
         </div>
         <div ng-if="Driver.otpgenerated" class="row">
@@ -65,6 +67,13 @@
             <span class="input-status" data-toggle="tooltip" data-placement="top" title="Click on Submit Button and Enter OTP"> </span>
             <input ng-model="Driver.OTP" type="text" placeholder="OTP">
             
+          </span>
+        </div>
+
+        <div class="row">
+          <span class="req-input">
+            <span class="input-status" data-toggle="tooltip" data-placement="top" title="Pincode."> </span>
+            <input ng-model="Driver.Pincode" type="text" placeholder="Pincode">
           </span>
         </div>
         <!--<div class="row">
@@ -112,8 +121,16 @@
             <span class="input-status" data-toggle="tooltip" data-placement="top" title="My Email"> </span>
             <input ng-model="Traveller.TravellerEmail" type="text" data-min-length="8" placeholder="Email Address" value="Traveller email">
         </div>
+
+        <div class="row">
+          <span class="req-input input-password invalid">
+            <span class="input-status" data-toggle="tooltip" data-placement="top" title="Password must be at least 8 characters long."> </span>
+            <input ng-model= "Traveller.TravellerPass" type="password" data-min-length="8" placeholder="Password">
+          </span>
+        </div>
+
         <div class="row submit-row">
-          <button ng-click ="Traveller.SubmitTraveller" type="button" class="btn btn-block submit-form valid">Submit</button>
+          <button ng-click ="Traveller.SubmitTraveller()" type="button" class="btn btn-block submit-form valid">Submit</button>
         </div>
       </div>
       </div>

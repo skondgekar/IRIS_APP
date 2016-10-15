@@ -1,4 +1,7 @@
 var IRIS_APP = angular.module("IRIS_APP",[])
+				.config(['$httpProvider', function($httpProvider) {
+  					$httpProvider.defaults.withCredentials = true;
+				}])
 
 IRIS_APP.controller('IRISCtrl',function($http, $scope, $timeout){
 
@@ -18,6 +21,7 @@ function Driver($http, $scope, $timeout){
 	this.loading = false;
 	this.Messages = [];
 	this.Errors = [];
+	this.pincode =[];
 
 	this.SubmitDriver = function(){
 		this.loading = true;
@@ -55,19 +59,43 @@ function Driver($http, $scope, $timeout){
 function Traveller($http, $scope){
 	this.TravellerName = "";
 	this.TravellerEmail = "";
+	this.TravellerPass = "";
 
 	this.SubmitTraveller = function(){
-		console.log(this);
-		return;
+		console.log('here', this);
+		var t = this;
 		$http({
-			url : "",
+			url : "https://auth.death39.hasura-app.io/signup",
 			method: "POST",
 			data : {
-				TravellerName : this.TravellerName,
-				TravellerEmail : this.TravellerEmail
+				username : this.TravellerEmail,
+				email : this.TravellerEmail,
+				password: this.TravellerPass
 			}
 		}).then(function(data){
 			console.log(data);
+			var userId = data.data.hasura_id;
+			
+			$http({
+				url : "https://data.death39.hasura-app.io/v1/query",
+				method: "POST",
+				data : {
+					type: "insert",
+					args: {
+						table : "user",
+	    				returning: ["user_id"],
+					    objects: [{
+					      "user_id" : userId,
+					      "name" : t.TravellerName,
+					      "email" : t.TravellerEmail
+					    }]
+					}
+				}
+			}).then(function(data) {
+				console.log(data);
+			}, function(err) {
+				console.log(err);
+			});
 		},function(err){
 			console.log(err);
 		});
@@ -80,15 +108,38 @@ function Login($http, $scope){
 	this.password ="";
 
 	this.SubmitLogin = function(){
-	    $http({
-	    	url : "",
-	    	method : "POST",
-	    	data : {
-	    		username : this.username,
-	    		password : this.password
-	    	}
-	    }).then(function(data){
+	    console.log('here', this);
+		var t = this;
+		$http({
+			url : "https://auth.death39.hasura-app.io/login",
+			method: "POST",
+			data : {
+				username : this.email,
+				password : this.password,
+			}
+		}).then(function(data){
 			console.log(data);
+			var userId = data.data.hasura_id;
+			
+			$http({
+				url : "https://data.death39.hasura-app.io/v1/query",
+				method: "POST",
+				data : {
+					type: "insert",
+					args: {
+						table : "user",
+	    				returning: ["user_id"],
+					    objects: [{
+					     "username" : t.email,
+					      "password" : t.password
+					    }]
+					}
+				}
+			}).then(function(data) {
+				console.log(data);
+			}, function(err) {
+				console.log(err);
+			});
 		},function(err){
 			console.log(err);
 		});
