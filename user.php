@@ -101,7 +101,7 @@ include_once('api/Objects/Driver.php');
                             <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
                             <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
                         </span>
-                        <a data-text="Your message goes here.." data-link="http://w3lessons.info" class="whatsapp w3_whatsapp_btn w3_whatsapp_btn_large">Share</a>
+                        <a data-text="Hi! i am travelling, this is the details of driver's profile" data-link="http://w3lessons.info" class="whatsapp w3_whatsapp_btn w3_whatsapp_btn_large">Share</a>
                     </div>
             
           </div>
