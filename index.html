@@ -52,14 +52,12 @@
           </span>
         </div>-->
         <div class="row" >
-
+           
           <span class="req-input" >
             <span class="input-status" data-toggle="tooltip" data-placement="top" title="Aadhaar ID."></span>
-            <input ng-disabled="Driver.otpgenerated" ng-model="Driver.aadhaar_ID" type="text" data-min-length="8" placeholder="Aaadhaar Id">
-           <span class="label label-default">{{Driver.aadhaar_ID.length}}</span> 
-            
-
+            <input ng-disabled="Driver.otpgenerated" ng-model="Driver.aadhaar_ID" type="text" data-min-length="8" placeholder="Aaadhaar Id" >
           </span>
+           <span class="label label-default">{{Driver.aadhaar_ID.length}}</span> 
         </div>
         <div ng-if="Driver.otpgenerated" class="row">
           <span class="req-input">
