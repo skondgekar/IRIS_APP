@@ -3,9 +3,9 @@ var IRIS_APP = angular.module("IRIS_APP",[])
   					$httpProvider.defaults.withCredentials = true;
 				}])
 
-IRIS_APP.controller('IRISCtrl',function($http, $scope, $timeout){
+IRIS_APP.controller('IRISCtrl',function($http, $scope, $timeout, $location){
 
-	$scope.Driver = new Driver($http, $scope, $timeout);
+	$scope.Driver = new Driver($http, $scope, $timeout, $location);
 	$scope.Traveller = new Traveller($http, $scope);
 	$scope.Login = new Login($http, $scope);
 
@@ -13,7 +13,7 @@ IRIS_APP.controller('IRISCtrl',function($http, $scope, $timeout){
 });
 
 
-function Driver($http, $scope, $timeout){
+function Driver($http, $scope, $timeout, $location){
 	var object = this;
 	this.aadhaar_ID = "";
 	this.OTP = "";
@@ -83,6 +83,7 @@ function Driver($http, $scope, $timeout){
 			if(data.data.success){
 				object.RegistrationSuccessfull = true;
 				object.Messages.push("Your registration is successfull");
+				$location.path("QRgenerator.php");
 				return;
 			}
 			object.Errors.push("There is an error with. Either with your OTP or pincode");
