@@ -55,14 +55,16 @@
         <div class="row">
           <span class="req-input" >
             <span class="input-status" data-toggle="tooltip" data-placement="top" title="Aadhaar ID."> </span>
-
+			
             <input ng-disabled="Driver.otpgenerated" ng-model="Driver.aadhaar_ID" type="text" data-min-length="8" placeholder="Aaadhaar Id">
+            {{Driver.aadhaar_ID.length}}
           </span>
         </div>
         <div ng-if="Driver.otpgenerated" class="row">
           <span class="req-input">
             <span class="input-status" data-toggle="tooltip" data-placement="top" title="Click on Submit Button and Enter OTP"> </span>
             <input ng-model="Driver.OTP" type="text" placeholder="OTP">
+            
           </span>
         </div>
         <!--<div class="row">
@@ -71,8 +73,15 @@
             <input ng-model="Driver.PhoneNumber" type="tel" placeholder="Phone Number">
           </span>
         </div>-->
-        <div class="alert alert-success">
-             <strong>Success!</strong> OTP Generated
+        <div ng-if="Driver.Messages.length != 0" class="alert alert-success">
+        	<div ng-repeat="m in Driver.Messages">
+        		{{m}}
+        	</div>
+        </div>
+        <div ng-if="Driver.Errors.length != 0" class="alert alert-danger">
+        	<div ng-repeat="m in Driver.Errors">
+        		{{m}}
+        	</div>
         </div>
         <div class="row submit-row">
           <button ng-disabled="Driver.loading" ng-click="Driver.SubmitDriver()" type="button" class="btn btn-block submit-form">Submit 

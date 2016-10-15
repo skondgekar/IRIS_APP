@@ -16,10 +16,14 @@ function Driver($http, $scope, $timeout){
 	this.OTP = "";
 	this.otpgenerated = false;
 	this.loading = false;
-	
+	this.Messages = [];
+	this.Errors = [];
 
 	this.SubmitDriver = function(){
 		this.loading = true;
+		this.otpgenerated = false;
+		this.Messages = [];
+		this.Errors = [];
 		$http({
 			url : "http://172.16.4.56/IRIS_APP/api/AddDriver.php",
 			method: "POST",
@@ -29,8 +33,17 @@ function Driver($http, $scope, $timeout){
 		}).then(function(data){
 			$timeout(function(){
 				console.log(data);
+				if(data.data.Errors){
+					object.Errors = data.data.Errors;
+				}
 				object.loading = false;
-				object.otpgenerated = true;
+				
+				if(data.data.Errors){
+					if(data.data.Errors.length == 0){
+						object.otpgenerated = true;
+					}
+				}
+				object.Messages = data.data.message;
 			},2000)
 		},function(err){
 			console.log(err);

@@ -3,10 +3,19 @@
 class Response{
 	public $Errors;
 	public $Data;
+	public $message;
 	
 	function __construct(){
 		$this->Errors = array();
 		$this->Data = array();
+		$this->message = array();
+	}
+	
+	function proceed(){
+		if(count($this->Errors) == 0){
+			return true;
+		}
+		return false;
 	}
 }
 
