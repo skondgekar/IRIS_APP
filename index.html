@@ -15,7 +15,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script
+  src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.20/angular.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,7 +26,9 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body ng-app="IRIS_APP" ng-controller="IRISCtrl">
+    <div>{{Driver}}</div>
+    <div>{{Traveller}}</div>
     <h1>Traveller Safety App</h1>
 
 
@@ -41,26 +45,35 @@
         </div>
       </div>
       <div class="input-container">
-        <div class="row">
+        <!--<div class="row">
           <span class="req-input" >
             <span class="input-status" data-toggle="tooltip" data-placement="top" title="My First and Last Name."> </span>
-            <input type="text" data-min-length="8" placeholder="Full Name">
+
+            <input ng-model="Driver.FullName" type="text" data-min-length="8" placeholder="Full Name">
+          </span>
+        </div>-->
+        <div class="row">
+          <span class="req-input" >
+            <span class="input-status" data-toggle="tooltip" data-placement="top" title="Aadhaar ID."> </span>
+
+            <input ng-model="Driver.aadhaar_ID" type="text" data-min-length="8" placeholder="Aaadhaar Id">
           </span>
         </div>
-        <div class="row">
+        <div ng-if="Driver.otpgenerated" class="row">
           <span class="req-input">
-            <span class="input-status" data-toggle="tooltip" data-placement="top" title="My DOB"> </span>
-            <input type="email" placeholder="DOB">
+            <span class="input-status" data-toggle="tooltip" data-placement="top" title="Click on Submit Button and Enter OTP"> </span>
+            <input ng-model="Driver.OTP" type="text" placeholder="OTP">
           </span>
         </div>
-        <div class="row">
+        <!--<div class="row">
           <span class="req-input">
             <span class="input-status" data-toggle="tooltip" data-placement="top" title="My Phone Number."> </span>
-            <input type="tel" placeholder="Phone Number">
+            <input ng-model="Driver.PhoneNumber" type="tel" placeholder="Phone Number">
           </span>
-        </div>
+        </div>-->
         <div class="row submit-row">
-          <button type="button" class="btn btn-block submit-form">Submit</button>
+          <button ng-click="Driver.SubmitDriver()" type="button" class="btn btn-block submit-form">Submit 
+          <span ng-if="Driver.laoding"> loading...</span> </button>
         </div>
       </div>
       </div>
@@ -78,17 +91,17 @@
         <div class="row">
           <span class="req-input valid" >
             <span class="input-status" data-toggle="tooltip" data-placement="top" title="My First and Last Name."> </span>
-            <input type="text" data-min-length="8" placeholder="Full name" value="Traveller name">
+            <input ng-model ="Traveller.TravellerName" type="text" data-min-length="8" placeholder="Full name" value="Traveller name">
           </span>
         </div>
       
         <div class="row">
           <span class="req-input message-box valid">
             <span class="input-status" data-toggle="tooltip" data-placement="top" title="My Email"> </span>
-            <input type="text" data-min-length="8" placeholder="Email Address" value="Traveller email">
+            <input ng-model="Traveller.TravellerEmail" type="text" data-min-length="8" placeholder="Email Address" value="Traveller email">
         </div>
         <div class="row submit-row">
-          <button type="button" class="btn btn-block submit-form valid">Submit</button>
+          <button ng-click ="Traveller.SubmitTraveller" type="button" class="btn btn-block submit-form valid">Submit</button>
         </div>
       </div>
       </div>
@@ -107,13 +120,13 @@
         <div class="row">
           <span class="req-input valid" >
             <span class="input-status" data-toggle="tooltip" data-placement="top" title="Input your email."> </span>
-            <input type="email" data-min-length="8" placeholder="Email" value="">
+            <input ng-model ="Login.username" type="email" data-min-length="8" placeholder="Email" value="">
           </span>
         </div>
         <div class="row">
           <span class="req-input input-password invalid">
             <span class="input-status" data-toggle="tooltip" data-placement="top" title="Password must be at least 8 characters long."> </span>
-            <input type="password" data-min-length="8" placeholder="Password">
+            <input ng.model= "Login.password" type="password" data-min-length="8" placeholder="Password">
           </span>
         </div>
         
@@ -129,7 +142,7 @@
         </div>
         
         <div class="row submit-row">
-          <button type="button" class="btn btn-block submit-form invalid">Login</button>
+          <button ng-click = "Login.SubmitLogin" type="button" class="btn btn-block submit-form invalid">Login</button>
         </div>
         <div class="oauth-buttons">
           <span><i class="fa fa-facebook"></i> </span>
@@ -150,6 +163,6 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/IRIS.js"></script>
   </body>
 </html>
