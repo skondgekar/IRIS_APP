@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>Passanger Security</title>
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
@@ -25,76 +25,128 @@
     <![endif]-->
   </head>
   <body>
-    <h1>Hello, world!</h1>
-    <form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-  <div class="form-group">
-    <label for="exampleSelect1">Example select</label>
-    <select class="form-control" id="exampleSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleSelect2">Example multiple select</label>
-    <select multiple class="form-control" id="exampleSelect2">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleTextarea">Example textarea</label>
-    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputFile">File input</label>
-    <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-    <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
-  </div>
-  <fieldset class="form-group">
-    <legend>Radio buttons</legend>
-    <div class="form-check">
-      <label class="form-check-label">
-        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-        Option one is this and that&mdash;be sure to include why it's great
-      </label>
-    </div>
-    <div class="form-check">
-    <label class="form-check-label">
-        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
-        Option two can be something else and selecting it will deselect option one
-      </label>
-    </div>
-    <div class="form-check disabled">
-    <label class="form-check-label">
-        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
-        Option three is disabled
-      </label>
-    </div>
-  </fieldset>
-  <div class="form-check">
-    <label class="form-check-label">
-      <input type="checkbox" class="form-check-input">
-      Check me out
-    </label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    <h1>Traveller Safety App</h1>
 
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<div class="container">
+    <div class="row">
+    
+      <div class="col-md-4">
+      <form>
+      <div id="contact-form" class="form-container" data-form-container>
+      <div class="row">
+        <div class="form-title">
+          <span>I am a Driver</span>
+        </div>
+      </div>
+      <div class="input-container">
+        <div class="row">
+          <span class="req-input" >
+            <span class="input-status" data-toggle="tooltip" data-placement="top" title="My First and Last Name."> </span>
+            <input type="text" data-min-length="8" placeholder="Full Name">
+          </span>
+        </div>
+        <div class="row">
+          <span class="req-input">
+            <span class="input-status" data-toggle="tooltip" data-placement="top" title="My DOB"> </span>
+            <input type="email" placeholder="DOB">
+          </span>
+        </div>
+        <div class="row">
+          <span class="req-input">
+            <span class="input-status" data-toggle="tooltip" data-placement="top" title="My Phone Number."> </span>
+            <input type="tel" placeholder="Phone Number">
+          </span>
+        </div>
+        <div class="row submit-row">
+          <button type="button" class="btn btn-block submit-form">Submit</button>
+        </div>
+      </div>
+      </div>
+      </form>
+    </div>
+        <div class="col-md-4">
+        <form>
+      <div id="contact-form" class="form-container" data-form-container style="color: rgb(46, 125, 50); background: rgb(200, 230, 201);">
+      <div class="row">
+        <div class="form-title">
+          <span> I am a Traveller</span>
+        </div>
+      </div>
+      <div class="input-container">
+        <div class="row">
+          <span class="req-input valid" >
+            <span class="input-status" data-toggle="tooltip" data-placement="top" title="My First and Last Name."> </span>
+            <input type="text" data-min-length="8" placeholder="Full name" value="Traveller name">
+          </span>
+        </div>
+      
+        <div class="row">
+          <span class="req-input message-box valid">
+            <span class="input-status" data-toggle="tooltip" data-placement="top" title="My Email"> </span>
+            <input type="text" data-min-length="8" placeholder="Email Address" value="Traveller email">
+        </div>
+        <div class="row submit-row">
+          <button type="button" class="btn btn-block submit-form valid">Submit</button>
+        </div>
+      </div>
+      </div>
+      </form>
+    </div>
+      
+    <div class="col-md-4">
+    <form>
+        <div id="login-form" class="form-container" data-form-container style="color: rgb(198, 40, 40); background: rgb(255, 205, 210);">
+      <div class="row">
+        <div class="form-title">
+          <span>Login</span>
+        </div>
+      </div>
+      <div class="input-container">
+        <div class="row">
+          <span class="req-input valid" >
+            <span class="input-status" data-toggle="tooltip" data-placement="top" title="Input your email."> </span>
+            <input type="email" data-min-length="8" placeholder="Email" value="">
+          </span>
+        </div>
+        <div class="row">
+          <span class="req-input input-password invalid">
+            <span class="input-status" data-toggle="tooltip" data-placement="top" title="Password must be at least 8 characters long."> </span>
+            <input type="password" data-min-length="8" placeholder="Password">
+          </span>
+        </div>
+        
+        <div class="row" style="display:none">
+          <span class="req-input confirm-password">
+            <span class="input-status" data-toggle="tooltip" data-placement="top" title="Password Must Match Initial Password Field."> </span>
+            <input type="password" data-min-length="8" placeholder="Confirm Password">
+          </span>
+        </div>
+        
+        <div class="row">
+          <a class="create-account"> Create an Account </a>
+        </div>
+        
+        <div class="row submit-row">
+          <button type="button" class="btn btn-block submit-form invalid">Login</button>
+        </div>
+        <div class="oauth-buttons">
+          <span><i class="fa fa-facebook"></i> </span>
+          <span><i class="fa fa-google-plus"></i> </span>
+          <span><i class="fa fa-linkedin"></i> </span>
+          <span><i class="fa fa-twitter"></i> </span>
+        </div>
+          
+        
+      </div>
+      </div>
+    
+      </form>
+    </div>
+  
+  </div>
+</div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
