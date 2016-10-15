@@ -96,11 +96,12 @@ include_once('api/Objects/Driver.php');
               </div>
             </div>
                  <div class="panel-footer">
-                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                        
                         <span class="pull-right">
                             <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
                             <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
                         </span>
+                        <a data-text="Hi! i am travelling, this is the details of driver's profile" data-link="http://w3lessons.info" class="whatsapp w3_whatsapp_btn w3_whatsapp_btn_large">Share</a>
                     </div>
             
           </div>
@@ -110,7 +111,45 @@ include_once('api/Objects/Driver.php');
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-   
+    <script type="text/javascript">
+      $(document).ready(function() {
+
+var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+};
+ $(document).on("click", '.whatsapp', function() {
+        if( isMobile.any() ) {
+
+            var text = $(this).attr("data-text");
+            var url = $(this).attr("data-link");
+            var message = encodeURIComponent(text) + " - " + encodeURIComponent(url);
+            var whatsapp_url = "whatsapp://send?text=" + message;
+            window.location.href = whatsapp_url;
+        } else {
+            alert("Please share this article in mobile device");
+        }
+
+    });
+});
+    </script>
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   </body>
 </html>
 
