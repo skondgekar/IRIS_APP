@@ -47,13 +47,36 @@ class Driver {
 		$DateOfBirth = $Split[2]."-".$Split[1]."-".$Split[0];
 		
 		//Address consolidate
+		
 		$Address1 = $pKYC['kyc']['poa'];
-		$Address = PrintNoNull($Address1['house'])."</br>";
-		$Address .= PrintNoNull($Address1['lm'])."</br>";
-		$Address .= PrintNoNull($Address1['street'])."</br>";
-		$Address .= PrintNoNull($Address1['po'])."</br>";
-		$Address .= PrintNoNull($Address1['dist'])."</br>";
-		$Address .= PrintNoNull($Address1['state'])."</br>";
+		
+		if(!isset($Address1['house'])){
+			$Address1['house'] = "";
+		}
+		
+		if(!isset($Address1['lm'])){
+			$Address1['lm'] = "";
+		}
+		
+		if(!isset($Address1['street'])){
+			$Address1['street'] = "";
+		}
+		if(!isset($Address1['dist'])){
+			$Address1['dist'] = "";
+		}
+		if(!isset($Address1['po'])){
+			$Address1['po'] = "";
+		}
+		if(!isset($Address1['state'])){
+			$Address1['state'] = "";
+		}
+		
+		$Address = $Address1['house']."</br>";
+		$Address .= $Address1['lm']."</br>";
+		$Address .= $Address1['street']."</br>";
+		$Address .= $Address1['po']."</br>";
+		$Address .= $Address1['dist']."</br>";
+		$Address .= $Address1['state']."</br>";
 		
 		
 		//Add hasuras database connection and driver
