@@ -1,3 +1,18 @@
+<?php
+
+
+include_once('api/Objects/functions.php');
+include_once('api/Objects/Driver.php');
+
+
+	$Driver = new Driver();
+	$Driver->AadharId = $_GET['ai'];
+	
+	$DriverDetails = $Driver->getDriver();
+	
+	//print_r($DriverDetails);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -44,44 +59,34 @@
             </div>
             <div class="panel-body">
               <div class="row">
-                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="https://thuppahi.files.wordpress.com/2014/09/indian-cabbi-in-oz.jpg" class="img-circle img-responsive"> </div>
+                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="data:image/png;base64,<?php echo $DriverDetails[0]['photo'] ?>" class="img-circle img-responsive"> </div>
                 
                
                 <div class=" col-md-9 col-lg-9 "> 
                   <table class="table table-user-information">
                     <tbody>
                       <tr>
-                        <td>Driver Name:</td>
-                        <td>Ramesh Babu</td>
+                        <td style="text-align: right">Driver Name:</td>
+                        <td style="text-align: left"><?php echo $DriverDetails[0]['name'] ?></td>
                       </tr>
                       <tr>
-                        <td>Aadhar ID:</td>
-                        <td>00000000000</td>
+                        <td style="text-align: right">Aadhar ID:</td>
+                        <td style="text-align: left"><?php echo $DriverDetails[0]['aadhar_id'] ?></td>
                       </tr>
                       <tr>
-                        <td>Date of Birth</td>
-                        <td>01/24/1988</td>
+                        <td style="text-align: right">Date of Birth</td>
+                        <td style="text-align: left"><?php echo $DriverDetails[0]['dob'] ?></td>
                       </tr>
                    
                          <tr>
                              <tr>
-                        <td>Gender</td>
-                        <td>Male</td>
+                        <td style="text-align: right">Gender</td>
+                        <td style="text-align: left"><?php echo $DriverDetails[0]['gender'] ?></td>
                       </tr>
                         <tr>
-                        <td>Home Address</td>
-                        <td>Bandra, Mumbai</td>
+                        <td style="text-align: right">Home Address</td>
+                        <td style="text-align: left"><?php echo $DriverDetails[0]['address'] ?></td>
                       </tr>
-                      <tr>
-                        <td>Email</td>
-                        <td><a href="mailto:info@support.com">info@support.com</a></td>
-                      </tr>
-                        <td>Phone Number</td>
-                        <td>555-4567-890(Mobile)
-                        </td>
-                           
-                      </tr>
-                     
                     </tbody>
                   </table>
                   

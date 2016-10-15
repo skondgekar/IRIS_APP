@@ -48,12 +48,12 @@ class Driver {
 		
 		//Address consolidate
 		$Address1 = $pKYC['kyc']['poa'];
-		$Address = $Address1['house']."</br>";
-		$Address .= $Address1['lm']."</br>";
-		$Address .= $Address1['street']."</br>";
-		$Address .= $Address1['po']."</br>";
-		$Address .= $Address1['dist']."</br>";
-		$Address .= $Address1['state']."</br>";
+		$Address = PrintNoNull($Address1['house'])."</br>";
+		$Address .= PrintNoNull($Address1['lm'])."</br>";
+		$Address .= PrintNoNull($Address1['street'])."</br>";
+		$Address .= PrintNoNull($Address1['po'])."</br>";
+		$Address .= PrintNoNull($Address1['dist'])."</br>";
+		$Address .= PrintNoNull($Address1['state'])."</br>";
 		
 		
 		//Add hasuras database connection and driver
@@ -82,9 +82,19 @@ class Driver {
 			"pin_code" => $pKYC['kyc']['poa']['pc']
 		));
 		*/
-		//echo SendData("https://data.death39.hasura-app.io/v1/query", $HasuraQuery->getJSON());
+		SendData("https://data.death39.hasura-app.io/v1/query", $HasuraQuery->getJSON());
 		
 		return $KYCData;
+	}
+
+	function getDriver(){
+		$HasuraQuery = new HasuraQueryObject();
+		$HasuraQuery->type = "select";
+		$HasuraQuery->table = "driver";
+		$HasuraQuery->columns = array('driver_id','aadhar_id','name','dob','address','photo','pin_code','gender');
+		$HasuraQuery->where = array('aadhar_id' => $this->AadharId);
+		
+		return json_decode(SendData("https://data.death39.hasura-app.io/v1/query", $HasuraQuery->getJSON()),1);
 	}
 }
 

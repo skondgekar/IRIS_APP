@@ -50,6 +50,8 @@ class HasuraQueryObject{
 	public $table;
 	public $returning;
 	public $objects;
+	public $columns;
+	public $where;
 	
 	function __construct(){
 		
@@ -57,10 +59,25 @@ class HasuraQueryObject{
 	
 	function getJSON(){
 		$Temp = array();
-		$Temp['type'] = $this->type;
+		if($this->type){
+			$Temp['type'] = $this->type;
+		}
+
 		$Temp['args']['table'] = $this->table;
-		$Temp['args']['returning'] = $this->returning;
-		$Temp['args']['objects'] = $this->objects;
+		if($this->returning){
+			$Temp['args']['returning'] = $this->returning;
+		}
+		
+		if($this->objects){
+			$Temp['args']['objects'] = $this->objects;
+		}
+
+		if($this->columns){
+			$Temp['args']['columns'] = $this->columns;
+		}
+		if($this->where){
+			$Temp['args']['where'] = $this->where;
+		}
 		return json_encode($Temp);
 	}
 	
@@ -129,6 +146,7 @@ class KYC{
 		$this->modality = "otp";
 		$this->certificate = "preprod";
 		$this->type = "pincode";
+		$this->pincode = "";
 	}
 	
 	public function getKYC(){
@@ -142,6 +160,19 @@ class KYC{
 		$Data['auth-capture-request']['otp'] = $this->OTP;
 		
 		return SendData($this->Url, json_encode($Data));
+	}
+}
+
+function PrintNoNull($Input){
+	if(isset($Input)){
+		return $Input;
+	}
+	return "";
+}
+
+function convertToBlank($Input){
+	if(!isset($Input)){
+		$Input = "";
 	}
 }
 
