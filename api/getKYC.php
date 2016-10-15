@@ -3,6 +3,8 @@
     header('Content-Type: *');
     header("Access-Control-Allow-Origin: *");
 
+
+
 include_once('Objects/functions.php');
 include_once('Objects/Driver.php');
 
@@ -27,6 +29,8 @@ if(!$Result->proceed()){
 $Driver = new Driver();
 $Driver->AadharId = $_POST['aadhaar_ID'];
 $Driver->OTP = $_POST['OTP'];
+$Driver->Pincode = $_POST['pincode'];
+
 $Result->Data = json_decode($Driver->getKYC());
 
 echo json_encode($Result->Data);

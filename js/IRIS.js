@@ -22,11 +22,15 @@ function Driver($http, $scope, $timeout){
 	this.Messages = [];
 	this.Errors = [];
 	this.RegistrationSuccessfull = false;
-	this.pincode =[];
+	this.pincode = "";
 
 	this.SubmitDriver = function(){
 		
 		if(this.otpgenerated){
+			if(this.OTP == ""){
+				this.Messages.push("OTP cannot be empty");
+				return;
+			}
 			this.getKYC();
 			return;
 		}
@@ -70,7 +74,8 @@ function Driver($http, $scope, $timeout){
 			method: "POST",
 			data : {
 				aadhaar_ID : this.aadhaar_ID,
-				OTP : this.OTP
+				OTP : this.OTP,
+				pincode : this.pincode
 			}
 		}).then(function(data){
 			object.loading = false;
@@ -80,7 +85,7 @@ function Driver($http, $scope, $timeout){
 				object.Messages.push("Your registration is successfull");
 				return;
 			}
-			object.Errors.push(data);
+			object.Errors.push("There is an error with. Either with your OTP or pincode");
 			
 		},function(err){
 			console.log(err);

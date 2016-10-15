@@ -43,7 +43,7 @@
           <span>I am a Driver</span>
         </div>
       </div>
-      <div class="input-container">
+      <div class="input-container" ng-if="!Driver.RegistrationSuccessfull">
         <!--<div class="row">
           <span class="req-input" >
             <span class="input-status" data-toggle="tooltip" data-placement="top" title="My First and Last Name."> </span>
@@ -69,25 +69,20 @@
           </span>
         </div>
 
-        <div class="row">
+        <div class="row" ng-if="Driver.otpgenerated">
           <span class="req-input">
             <span class="input-status" data-toggle="tooltip" data-placement="top" title="Pincode."> </span>
-            <input ng-model="Driver.Pincode" type="text" placeholder="Pincode">
+            <input ng-model="Driver.pincode" type="text" placeholder="Pincode">
           </span>
         </div>
-        <!--<div class="row">
-          <span class="req-input">
-            <span class="input-status" data-toggle="tooltip" data-placement="top" title="My Phone Number."> </span>
-            <input ng-model="Driver.PhoneNumber" type="tel" placeholder="Phone Number">
-          </span>
-        </div>-->
+
         <div ng-if="Driver.Messages.length != 0" class="alert alert-success">
-        	<div ng-repeat="m in Driver.Messages">
+        	<div ng-repeat="m in Driver.Messages track by $index">
         		{{m}}
         	</div>
         </div>
         <div ng-if="Driver.Errors.length != 0" class="alert alert-danger">
-        	<div ng-repeat="m in Driver.Errors">
+        	<div ng-repeat="m in Driver.Errors track by $index">
         		{{m}}
         	</div>
         </div>
@@ -97,6 +92,7 @@
         </div>
       </div>
       </div>
+      
       </form>
     </div>
         <div class="col-md-4">

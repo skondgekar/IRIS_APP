@@ -15,7 +15,7 @@ class Driver {
 		$this->DateOfBirth = "";
 		$this->AadharId = "";
 		$this->Errors = array();
-		$this->Pincode = "400079";
+		$this->Pincode = "";
 	}
 	
 	function sendOTP(){
@@ -33,7 +33,58 @@ class Driver {
 		$KYC->Aadhar = $this->AadharId;
 		$KYC->OTP = $this->OTP;
 		$KYC->pincode = $this->Pincode;
-		return $KYC->getKYC();
+		$KYCData = $KYC->getKYC();
+		$pKYC = json_decode($KYCData,true);
+		
+		if($pKYC['success'] == ""){
+			return $KYCData;
+		}
+		
+		$_SESSION['aadhar_Id'] = $this->AadharId;
+		//Date of birth change format
+		$DateOfBirth = $pKYC['kyc']['poi']['dob'];
+		$Split = explode("-", $DateOfBirth);
+		$DateOfBirth = $Split[2]."-".$Split[1]."-".$Split[0];
+		
+		//Address consolidate
+		$Address1 = $pKYC['kyc']['poa'];
+		$Address = $Address1['house']."</br>";
+		$Address .= $Address1['lm']."</br>";
+		$Address .= $Address1['street']."</br>";
+		$Address .= $Address1['po']."</br>";
+		$Address .= $Address1['dist']."</br>";
+		$Address .= $Address1['state']."</br>";
+		
+		
+		//Add hasuras database connection and driver
+		
+		$HasuraQuery = new HasuraQueryObject();
+		$HasuraQuery->type = "insert";
+		$HasuraQuery->table = "driver";
+		$HasuraQuery->returning = array("driver_id");
+		$HasuraQuery->AddObject(array(
+			"aadhar_id" => $this->AadharId,
+			"name" => $pKYC['kyc']['poi']['name'],
+			"dob" => $DateOfBirth,
+			"gender" => $pKYC['kyc']['poi']['gender'],
+			"address" => $Address,
+			"photo" => $pKYC['kyc']['photo'],
+			"pin_code" => intval($pKYC['kyc']['poa']['pc'])
+		));
+		/*
+		print_r(array(
+			"aadhar_id" => $this->AadharId,
+			"name" => $pKYC['kyc']['poi']['name'],
+			"dob" => $DateOfBirth,
+			"gender" => $pKYC['kyc']['poi']['gender'],
+			"address" => $Address,
+			"photo" => $pKYC['kyc']['photo'],
+			"pin_code" => $pKYC['kyc']['poa']['pc']
+		));
+		*/
+		//echo SendData("https://data.death39.hasura-app.io/v1/query", $HasuraQuery->getJSON());
+		
+		return $KYCData;
 	}
 }
 

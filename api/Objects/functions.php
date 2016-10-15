@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+
+
 class Response{
 	public $Errors;
 	public $Data;
@@ -137,6 +140,7 @@ class KYC{
 		$Data['auth-capture-request']['modality'] = $this->modality;
 		$Data['auth-capture-request']['certificate-type'] = $this->certificate;
 		$Data['auth-capture-request']['otp'] = $this->OTP;
+		
 		return SendData($this->Url, json_encode($Data));
 	}
 }
