@@ -26,9 +26,13 @@ if(!$Result->proceed()){
 
 $Driver = new Driver();
 $Driver->AadharId = $_POST['aadhaar_ID'];
-$Result->Data = $Driver->sendOTP();
+$Driver->OTP = $_POST['OTP'];
+$Result->Data = json_decode($Driver->getKYC());
 
-$Result->message[] = "OTP generated. Check your mobile";
+echo json_encode($Result->Data);
+die();
+
+$Result->message[] = "KYC Data received";
 
 echo json_encode($Result);
 

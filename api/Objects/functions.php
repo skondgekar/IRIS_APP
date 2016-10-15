@@ -65,6 +65,82 @@ class HasuraQueryObject{
 		$this->objects[] = $ob;
 	}
 }
+
+class OTP{
+	public $Url;
+	public $AadharId;
+	public $DeviceId;
+	public $CertificateType;
+	public $Channel;
+	public $Type;
+	public $latitide;
+	public $longitude;
+	public $altitude;
+	public $pincode;
+	
+	
+	public function __construct(){
+		$this->Url = "http://139.59.30.133:9090/otp";
+		$this->AadharId = "";
+		$this->DeviceId = "";
+		$this->CertificateType = "preprod";
+		$this->Channel = "SMS";
+		$this->Type = "";
+		$this->latitide = "";
+		$this->longitude = "";
+		$this->altitude = "";
+		$this->pincode = "";
+		
+	}
+
+	public function genOTP(){
+		$Data = array();
+		$Data['aadhaar-id'] = $this->AadharId;
+		$Data['device-id'] = $this->DeviceId;
+		$Data['certificate-type'] = $this->CertificateType;
+		$Data['channel'] = $this->Channel;
+		$Data['location']['type'] = "";
+		$Data['location']['latitude'] = "";
+		$Data['location']['longitude'] = "";
+		$Data['location']['altitude'] = "";
+		$Data['location']['pincode'] = "";
+		
+		return SendData($this->Url, json_encode($Data));
+	}
+}
+
+class KYC{
+	public $Url;
+	public $Consent;
+	public $type;
+	public $pincode;
+	public $modality;
+	public $certificate;
+	public $OTP;
+	public $Aadhar;
+	
+	public function __construct(){
+		$this->Url = "http://139.59.30.133:9090/kyc/raw";
+		$Data = array();
+		$this->Consent = "Y";
+		$this->modality = "otp";
+		$this->certificate = "preprod";
+		$this->type = "pincode";
+	}
+	
+	public function getKYC(){
+		$Data = array();
+		$Data['consent'] = $this->Consent;
+		$Data['auth-capture-request']['aadhaar-id'] = $this->Aadhar;
+		$Data['auth-capture-request']['location']['type'] = $this->type;
+		$Data['auth-capture-request']['location']['pincode'] = $this->pincode;
+		$Data['auth-capture-request']['modality'] = $this->modality;
+		$Data['auth-capture-request']['certificate-type'] = $this->certificate;
+		$Data['auth-capture-request']['otp'] = $this->OTP;
+		return SendData($this->Url, json_encode($Data));
+	}
+}
+
 /*
 $HasuraQuery = new HasuraQueryObject();
 $HasuraQuery->type = "insert";

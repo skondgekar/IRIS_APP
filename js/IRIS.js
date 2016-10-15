@@ -18,8 +18,15 @@ function Driver($http, $scope, $timeout){
 	this.loading = false;
 	this.Messages = [];
 	this.Errors = [];
+	this.RegistrationSuccessfull = false;
 
 	this.SubmitDriver = function(){
+		
+		if(this.otpgenerated){
+			this.getKYC();
+			return;
+		}
+		
 		this.loading = true;
 		this.otpgenerated = false;
 		this.Messages = [];
@@ -45,6 +52,32 @@ function Driver($http, $scope, $timeout){
 				}
 				object.Messages = data.data.message;
 			},2000)
+		},function(err){
+			console.log(err);
+		});
+	}
+
+	this.getKYC = function(){
+		this.loading = true;
+		this.Messages = [];
+		this.Errors = [];
+		$http({
+			url : "http://172.16.4.56/IRIS_APP/api/getKYC.php",
+			method: "POST",
+			data : {
+				aadhaar_ID : this.aadhaar_ID,
+				OTP : this.OTP
+			}
+		}).then(function(data){
+			object.loading = false;
+			console.log(data);
+			if(data.data.success){
+				object.RegistrationSuccessfull = true;
+				object.Messages.push("Your registration is successfull");
+				return;
+			}
+			object.Errors.push(data);
+			
 		},function(err){
 			console.log(err);
 		});
