@@ -160,7 +160,7 @@ function Login($http, $scope, $timeout, $window, $localStorage, $sessionStorage)
 				password : this.password,
 			}
 		}).then(function(data){
-
+			console.log(data);
 			var userId = data.data.hasura_id;
 			$scope.$storage.userId = userId;
 			$window.location.href = "dashboard.php";

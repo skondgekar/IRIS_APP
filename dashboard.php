@@ -25,18 +25,36 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body ng-app="Logout" ng-controller="LogoutCtrl">
   <div class="container">
   <div class="jumbotron">
     <h1>Dashboard</h1>
     <p>Success!You are logged  into your account!</p>
   </div>
+  <button ng-click="logout()" type="button" class="btn btn-danger">Logout</button>
   
 </div>
-
-</body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script>
+  	var Logout = angular.module("Logout",[])
+				.config(['$httpProvider', function($httpProvider) {
+  					$httpProvider.defaults.withCredentials = true;
+				}]);
+  	
+  	Logout.controller('LogoutCtrl',function($http, $scope, $window){
+  		$scope.logout = function(){
+  			$http({
+  				url : "https://auth.death39.hasura-app.io/user/logout",
+  				method : "GET"
+  			}).then(function(data){
+  				console.log(data);
+  				$window.location.href = "index.html";
+  			});
+  		}
+  	});
+  </script>
+</body>
   
   </body>
 </html>
