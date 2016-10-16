@@ -146,8 +146,8 @@ function Traveller($http, $scope, $timeout, $window, $localStorage, $sessionStor
 
 
 function Login($http, $scope, $timeout, $window, $localStorage, $sessionStorage){
-	this.username ="us";
-	this.password ="pw";
+	this.username ="";
+	this.password ="";
 
 	this.SubmitLogin = function(){
 	    console.log('here', this);
