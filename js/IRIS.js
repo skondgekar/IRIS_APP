@@ -160,25 +160,6 @@ function Login($http, $scope){
 			console.log(data);
 			var userId = data.data.hasura_id;
 			
-			$http({
-				url : "https://data.death39.hasura-app.io/v1/query",
-				method: "POST",
-				data : {
-					type: "insert",
-					args: {
-						table : "user",
-	    				returning: ["user_id"],
-					    objects: [{
-					     "username" : t.email,
-					      "password" : t.password
-					    }]
-					}
-				}
-			}).then(function(data) {
-				console.log(data);
-			}, function(err) {
-				console.log(err);
-			});
 		},function(err){
 			console.log(err);
 		});
