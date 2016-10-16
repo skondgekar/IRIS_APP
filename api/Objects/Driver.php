@@ -121,4 +121,36 @@ class Driver {
 	}
 }
 
+class User{
+	public $UserId;
+	public $Name;
+	public $email;
+	
+	function __construct(){
+		$this->UserId = "";
+		$this->Name = "";
+		$this->email = "";
+		
+	}
+	
+	function getUserById(){
+		
+	}
+	
+	function AddUserWithDriver($DriverId, $UserId){
+		$HasuraQuery = new HasuraQueryObject();
+		$HasuraQuery->table = "driver_user_conn";
+		$HasuraQuery->type = "insert";
+		$HasuraQuery->returning = array("id");
+		$HasuraQuery->AddObject(array(
+			"user_id" => intval($UserId),
+			"driver_id" => intval($DriverId),
+			"travel_time" => gmdate("Y-m-d\TH:i:s\Z")
+		));
+		return json_decode(SendData("https://data.death39.hasura-app.io/v1/query", $HasuraQuery->getJSON()),1);
+	}
+	
+	
+}
+
 ?>

@@ -1,9 +1,11 @@
-var IRIS_APP = angular.module("IRIS_APP",[])
+var IRIS_APP = angular.module("IRIS_APP",['ngStorage'])
 				.config(['$httpProvider', function($httpProvider) {
   					$httpProvider.defaults.withCredentials = true;
 				}])
 
-IRIS_APP.controller('IRISCtrl',function($http, $scope, $timeout, $window){
+IRIS_APP.controller('IRISCtrl',function($http, $scope, $timeout, $window, $localStorage, $sessionStorage){
+
+	$scope.$storage = $localStorage;
 
 	$scope.Driver = new Driver($http, $scope, $timeout, $window);
 	$scope.Traveller = new Traveller($http, $scope);
@@ -13,7 +15,7 @@ IRIS_APP.controller('IRISCtrl',function($http, $scope, $timeout, $window){
 });
 
 
-function Driver($http, $scope, $timeout, $window){
+function Driver($http, $scope, $timeout, $window, $localStorage, $sessionStorage){
 	var object = this;
 	this.aadhaar_ID = "";
 	this.OTP = "";
@@ -114,7 +116,7 @@ function Traveller($http, $scope){
 		}).then(function(data){
 			console.log(data);
 			var userId = data.data.hasura_id;
-			
+			$scope.$storage.userId = userId;
 			$http({
 				url : "https://data.death39.hasura-app.io/v1/query",
 				method: "POST",
@@ -143,8 +145,8 @@ function Traveller($http, $scope){
 
 
 function Login($http, $scope){
-	this.username ="";
-	this.password ="";
+	this.username ="us";
+	this.password ="pw";
 
 	this.SubmitLogin = function(){
 	    console.log('here', this);
@@ -153,15 +155,17 @@ function Login($http, $scope){
 			url : "https://auth.death39.hasura-app.io/login",
 			method: "POST",
 			data : {
-				username : this.email,
+				username : this.username,
 				password : this.password,
 			}
 		}).then(function(data){
-			console.log(data);
+
 			var userId = data.data.hasura_id;
-			
+			$scope.$storage.userId = userId;
+
 		},function(err){
-			console.log(err);
+			alert(err.data.message);
+
 		});
 	}
 }

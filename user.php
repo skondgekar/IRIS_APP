@@ -5,12 +5,23 @@ include_once('api/Objects/functions.php');
 include_once('api/Objects/Driver.php');
 
 
+
+
 	$Driver = new Driver();
 	$Driver->AadharId = $_GET['ai'];
 	
 	$DriverDetails = $Driver->getDriver();
 	
+	$Linked = false;
+	
 	//print_r($DriverDetails);
+	
+	if(isset($_GET['UserId'])){
+		$user = new User();
+		$user->AddUserWithDriver($DriverDetails[0]['driver_id'], $_GET['UserId']);
+		$Linked = true;
+	}
+	
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +43,7 @@ include_once('api/Objects/Driver.php');
 
 <script
   src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.20/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,8 +51,9 @@ include_once('api/Objects/Driver.php');
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
   </head>
-  <body>
+  <body ng-app="UserApp" ng-controller="UserCtrl">
     <div class="container">
       <div class="row">
       <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
@@ -51,8 +64,16 @@ include_once('api/Objects/Driver.php');
 <p class=" text-info">May 05,2014,03:00 pm </p>
       </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
-   
-   
+   			<?php
+   			if($Linked){
+   				?>
+   				  <div class="alert alert-info">
+		   		  	You are now linked with this driver
+		   		  </div>
+   				<?php
+   			}
+   			?>
+		   		  
           <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title">Driver's Information</h3>
@@ -148,9 +169,27 @@ var isMobile = {
 
     });
 });
+
     </script>
    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   </body>
+	  <script>
+		var UserApp = angular.module("UserApp",['ngStorage']);
+			
+		UserApp.controller('UserCtrl',function($http, $scope, $timeout, $window, $localStorage, $sessionStorage){
+			$scope.$storage = $localStorage;
+			console.log($scope.$storage);
+  <?php
+  if(!isset($_GET['UserId'])){
+  	?>
+			$window.location.href = "http://<?php echo $_SERVER['SERVER_ADDR']?>/IRIS_APP/user.php?ai=<?php echo $_GET['ai']?>&UserId="+$scope.$storage.userId;
+			
+  	<?php
+  }
+  ?>
+		});
+	  </script>
+  
 </html>
 
 
