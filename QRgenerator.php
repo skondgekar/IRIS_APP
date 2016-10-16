@@ -49,7 +49,7 @@ include_once('includes/phpqrcode/phpqrcode.php');
   <div class="panel panel-default">
     <div class="panel-body" style="text-align: center">
     	<?php
-     		QRcode::png("http://172.16.4.56/IRIS_APP/user.php?ai=".$Driver->AadharId, "images/".$Driver->AadharId.".png");    	
+     		QRcode::png("http://188.166.212.28/IRIS_APP/user.php?ai=".$Driver->AadharId, "images/".$Driver->AadharId.".png");    	
     	?>
     	<img style="width: 200px" src="images/<?php echo $Driver->AadharId ?>.png" />
     	<h1><?php echo $DriverDetails[0]['name'] ?></h1>

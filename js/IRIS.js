@@ -42,7 +42,7 @@ function Driver($http, $scope, $timeout, $window, $localStorage, $sessionStorage
 		this.Messages = [];
 		this.Errors = [];
 		$http({
-			url : "http://172.16.4.56/IRIS_APP/api/AddDriver.php",
+			url : "http://188.166.212.28/IRIS_APP/api/AddDriver.php",
 			method: "POST",
 			data : {
 				aadhaar_ID : this.aadhaar_ID,
@@ -72,7 +72,7 @@ function Driver($http, $scope, $timeout, $window, $localStorage, $sessionStorage
 		this.Messages = [];
 		this.Errors = [];
 		$http({
-			url : "http://172.16.4.56/IRIS_APP/api/getKYC.php",
+			url : "http://188.166.212.28/IRIS_APP/api/getKYC.php",
 			method: "POST",
 			data : {
 				aadhaar_ID : this.aadhaar_ID,
