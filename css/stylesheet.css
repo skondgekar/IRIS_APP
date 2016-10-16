@@ -6,7 +6,19 @@ h1{
 }
 
 html {
-  background-image: url('a.png');
+  background-image: url('../a.png');
+  
+}
+
+.Title{
+    font-weight: bolder;
+    background-color: rgba(255, 255, 255, 0.41);
+    padding: 20px;
+    color: #144800;
+}
+
+body{
+    background-color: rgba(255, 255, 255, 0);
 }
 
  .w3_whatsapp_btn {

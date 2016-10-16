@@ -7,9 +7,9 @@ IRIS_APP.controller('IRISCtrl',function($http, $scope, $timeout, $window, $local
 
 	$scope.$storage = $localStorage;
 
-	$scope.Driver = new Driver($http, $scope, $timeout, $window);
-	$scope.Traveller = new Traveller($http, $scope);
-	$scope.Login = new Login($http, $scope);
+	$scope.Driver = new Driver($http, $scope, $timeout, $window, $localStorage, $sessionStorage);
+	$scope.Traveller = new Traveller($http, $scope, $timeout, $window, $localStorage, $sessionStorage);
+	$scope.Login = new Login($http, $scope, $timeout, $window, $localStorage, $sessionStorage);
 
 
 });
@@ -97,7 +97,7 @@ function Driver($http, $scope, $timeout, $window, $localStorage, $sessionStorage
 
 }
 
-function Traveller($http, $scope){
+function Traveller($http, $scope, $timeout, $window, $localStorage, $sessionStorage){
 	this.TravellerName = "";
 	this.TravellerEmail = "";
 	this.TravellerPass = "";
@@ -134,6 +134,7 @@ function Traveller($http, $scope){
 				}
 			}).then(function(data) {
 				console.log(data);
+				$window.location.href = "dashboard.php";
 			}, function(err) {
 				console.log(err);
 			});
@@ -144,7 +145,7 @@ function Traveller($http, $scope){
 }
 
 
-function Login($http, $scope){
+function Login($http, $scope, $timeout, $window, $localStorage, $sessionStorage){
 	this.username ="us";
 	this.password ="pw";
 
@@ -162,7 +163,7 @@ function Login($http, $scope){
 
 			var userId = data.data.hasura_id;
 			$scope.$storage.userId = userId;
-
+			$window.location.href = "dashboard.php";
 		},function(err){
 			alert(err.data.message);
 
