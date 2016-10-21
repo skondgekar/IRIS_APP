@@ -180,7 +180,7 @@ function createNoty(message, type) {
 };
 
 $(function(){
-    createNoty('Hi! This is my message', 'info');
+    createNoty('System is down due to hasura API migration', 'info');
     $('.page-alert .close').click(function(e) {
         e.preventDefault();
         $(this).closest('.page-alert').slideUp();
