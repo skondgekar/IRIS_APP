@@ -18,8 +18,6 @@
 
 <script
   src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.20/angular.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
-
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -30,9 +28,10 @@
   </head>
   <body ng-app="IRIS_APP" ng-controller="IRISCtrl">
 
-   <h1 class="Title"><bold>PASSENGER SAFETY APP</bold></h1>
-
+   <h1><bold>TRAVELLER SAFETY APP</bold></h1>
+<div id="noty-holder"></div>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
 <div class="container">
     <div class="row">
     
@@ -99,7 +98,7 @@
       <div id="contact-form" class="form-container" data-form-container style="color: rgb(46, 125, 50); background: rgb(200, 230, 201);">
       <div class="row">
         <div class="form-title">
-          <span> I am a Passenger</span>
+          <span> I am a Traveller</span>
         </div>
       </div>
       <div class="input-container">
@@ -143,13 +142,13 @@
         <div class="row">
           <span class="req-input valid" >
             <span class="input-status" data-toggle="tooltip" data-placement="top" title="Input your email."> </span>
-            <input ng-model="Login.username" type="text" data-min-length="8" placeholder="Email" value="">
+            <input ng-model ="Login.username" type="email" data-min-length="8" placeholder="Email" value="">
           </span>
         </div>
         <div class="row">
           <span class="req-input input-password invalid">
             <span class="input-status" data-toggle="tooltip" data-placement="top" title="Password must be at least 8 characters long."> </span>
-            <input ng-model= "Login.password" type="password" data-min-length="8" placeholder="Password">
+            <input ng.model= "Login.password" type="password" data-min-length="8" placeholder="Password">
           </span>
         </div>
         
@@ -165,7 +164,7 @@
         </div>
         
         <div class="row submit-row">
-          <button ng-click = "Login.SubmitLogin()" type="button" class="btn btn-block submit-form invalid">Login</button>
+          <button ng-click = "Login.SubmitLogin" type="button" class="btn btn-block submit-form invalid">Login</button>
         </div>
         <div class="oauth-buttons">
           <span><i class="fa fa-facebook"></i> </span>
