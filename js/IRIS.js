@@ -1,7 +1,7 @@
 var IRIS_APP = angular.module("IRIS_APP",['ngStorage'])
 				.config(['$httpProvider', function($httpProvider) {
   					$httpProvider.defaults.withCredentials = true;
-				}])
+				}]);
 
 IRIS_APP.controller('IRISCtrl',function($http, $scope, $timeout, $window, $localStorage, $sessionStorage){
 

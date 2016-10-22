@@ -17,8 +17,8 @@
 <!-- Latest compiled and minified JavaScript -->
 
 <script
-  src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.20/angular.min.js"></script>
-
+  src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.20/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -29,8 +29,8 @@
   <body ng-app="IRIS_APP" ng-controller="IRISCtrl">
 
    <h1><bold>TRAVELLER SAFETY APP</bold></h1>
-<div id="noty-holder"></div>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<div id="noty-holder"></div>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 <div class="container">
     <div class="row">
@@ -148,7 +148,7 @@
         <div class="row">
           <span class="req-input input-password invalid">
             <span class="input-status" data-toggle="tooltip" data-placement="top" title="Password must be at least 8 characters long."> </span>
-            <input ng.model= "Login.password" type="password" data-min-length="8" placeholder="Password">
+            <input ng-model= "Login.password" type="password" data-min-length="8" placeholder="Password">
           </span>
         </div>
         
@@ -164,7 +164,7 @@
         </div>
         
         <div class="row submit-row">
-          <button ng-click = "Login.SubmitLogin" type="button" class="btn btn-block submit-form invalid">Login</button>
+          <button ng-click = "Login.SubmitLogin()" type="button" class="btn btn-block submit-form invalid">Login</button>
         </div>
         <div class="oauth-buttons">
           <span><i class="fa fa-facebook"></i> </span>

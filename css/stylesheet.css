@@ -7,7 +7,10 @@ h1{
 
 html {
   background-image: url('../a.png');
-  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .Title{
